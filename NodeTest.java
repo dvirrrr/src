@@ -3,7 +3,7 @@ public class NodeTest {
         Node<Integer> n = new Node<>(7);
         Node<Integer> n1 = new Node<>(12, n);
         Node<Integer> n2 = new Node<>(17, n1);
-        PrintListValues(n2);
+        PrintListValuesBackR(n2);
 
 
     }
@@ -13,6 +13,23 @@ public class NodeTest {
             System.out.println(lst.getValue());
             lst = lst.getNext();
         }
-
+    }
+    public static void PrintListValuesR(Node<Integer> lst) {
+        if (lst == null) {
+            return;
+        }
+        else {
+            System.out.println(lst.getValue());
+            PrintListValuesR(lst.getNext());
+        }
+    }
+    public static void PrintListValuesBackR(Node<Integer> lst) {
+        if (lst == null) {
+            return;
+        }
+        else {
+            PrintListValuesBackR(lst.getNext());
+            System.out.println(lst.getValue());
+        }
     }
 }

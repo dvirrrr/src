@@ -1,12 +1,17 @@
 public class Classwork {
     public static void main(String[] args) {
-        Queue <Character> q = new Queue<Character>();
-        q.insert('a');
-        q.insert('B');
-        q.insert('d');
-        q.insert('f');
+        Queue <Integer> q = new Queue<Integer>();
+        q.insert(2);
+        q.insert(3);
+        q.insert(1);
+        q.insert(10);
+        q.insert(3);
+        q.insert(3);
+        q.insert(2);
+        q.insert(18);
+        q.insert(10);
         System.out.println(q);
-        System.out.println(countCapitals(q));
+        resortThor(q);
         System.out.println(q);
     }
 
@@ -38,22 +43,85 @@ public class Classwork {
 
     public static int countCapitals(Queue <Character> q)
     {
-       int count = 0;
-       char value = 'a';
-       q.insert(null);
-       while (q.head() != null) {
-           value = q.remove();
-           int charInt = (int)value;
-           for (int i = 65; i<=90; i++) {
-               if (charInt == i) {
-                   count++;
-               }
-           }
-           q.insert(value);
-       }
+        int count = 0;
+        char value = 'a';
+        q.insert(null);
+        while (q.head() != null) {
+            value = q.remove();
+            int charInt = (int)value;
+            for (int i = 65; i<=90; i++) {
+                if (charInt == i) {
+                    count++;
+                }
+            }
+            q.insert(value);
+        }
         q.remove(); // should remove null;
         return count;
     }
-
-
+    public static int countCapitalss(Queue <Character> q)
+    {
+        int count = 0;
+        char value = 'a';
+        q.insert(null);
+        while (q.head() != null) {
+            value = q.remove();
+            if (value >= 'A' && value <= 'Z') {
+                count++;
+            }
+            q.insert(value);
+        }
+        q.remove(); // should remove null;
+        return count;
+    }
+    public static void upSideDown(Queue <String> q)
+    {
+        q.insert(null);
+        int count=0;
+        while (q.head() != null) {
+            String value = q.remove();
+            q.insert(value);
+            count++;
+        }
+        q.remove();
+        String [] thor = new String[count];
+        for (int i=0; i<count; i++) {
+            thor[i] = q.remove();
+        }
+        for (int j = count-1; j > -1; j--) {
+            q.insert(thor[j]);
+        }
+    }
+    public static void upSideDownR(Queue <String> q) {
+        if(q.isEmpty()) {
+            return;
+        }
+        else {
+            String value = q.remove();
+            upSideDown(q);
+            q.insert(value);
+        }
+    }
+    public static void resortThor(Queue <Integer> q) {
+        q.insert(null);
+        while (q.head() != null) {
+            int value = q.remove();
+            int count = 0;
+            while (q.head() != null) {
+                int value2 = q.remove();
+                if (value2 == value) {
+                    count++;
+                }
+                else {
+                    q.insert(value2);
+                }
+            }
+            while (count != 0) {
+                q.insert(value);
+            }
+            q.remove();
+            q.insert(null);
+            q.insert(value);
+        }
+    }
 }

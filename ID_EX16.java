@@ -54,13 +54,13 @@ public class ID_EX16 {
         reverseR(q2);
         System.out.println(q2);
 
-        /*q.insert(-7);
+        q.insert(-7);
         q.insert(-12);
         q.insert(24);
         q.insert(-9);
         q.insert(67);
         q.insert(-29);
         System.out.println(sumEvensR(q));
-        System.out.println(countNegativesR(q));*/
+        //System.out.println(countNegativesR(q));
     }
 }
