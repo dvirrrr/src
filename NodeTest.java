@@ -1,10 +1,15 @@
 public class NodeTest {
     public static void main(String[] args) {
+        /*
         Node<Integer> n = new Node<>(7);
         Node<Integer> n1 = new Node<>(12, n);
         Node<Integer> n2 = new Node<>(17, n1);
         PrintListValuesBackR(n2);
-
+        */
+        Node<String> n = new Node<>("lebron");
+        Node<String> n1 = new Node<>("antetokounmpo", n);
+        Node<String> n2 = new Node<>("west", n1);
+        System.out.println(LongestStringR(n2));
 
     }
 
@@ -30,6 +35,19 @@ public class NodeTest {
         else {
             PrintListValuesBackR(lst.getNext());
             System.out.println(lst.getValue());
+        }
+    }
+    public static String LongestStringR(Node <String> lst) {
+        if (!lst.hasNext()) {
+            return lst.getValue();
+        } else {
+            String rv = LongestStringR(lst.getNext());
+            if (rv.length() > lst.getValue().length()) {
+                return rv;
+            } else {
+                return lst.getValue();
+            }
+
         }
     }
 }
