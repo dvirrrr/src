@@ -50,4 +50,26 @@ public class NodeTest {
 
         }
     }
+    public static int Sidra(Node <Integer> lst) {
+        int count = 1;
+        int rvCount = 0;
+        while (lst.getValue() != null) {
+            boolean check = lst.getValue() > lst.getNext().getValue();
+            if (check) {
+                while (check) {
+                    count++;
+                }
+            }
+            if (!check) {
+                while (!check) {
+                    count++;
+                }
+            }
+            if (count >= 3) {
+                rvCount++;
+            }
+
+        }
+        return rvCount;
+    }
 }
