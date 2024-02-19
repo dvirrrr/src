@@ -55,19 +55,25 @@ public class NodeTest {
         int rvCount = 0;
         while (lst.getValue() != null) {
             boolean check = lst.getValue() > lst.getNext().getValue();
+            boolean oppCheck = lst.getValue() < lst.getNext().getValue();
             if (check) {
+                check = lst.getValue() > lst.getNext().getValue();
                 while (check) {
                     count++;
+                    check = lst.getValue() > lst.getNext().getValue();
                 }
             }
-            if (!check) {
-                while (!check) {
+            if (oppCheck) {
+                check = lst.getValue() > lst.getNext().getValue();
+                while (oppCheck) {
                     count++;
+                    oppCheck = lst.getValue() > lst.getNext().getValue();
                 }
             }
             if (count >= 3) {
                 rvCount++;
             }
+            count = 1;
 
         }
         return rvCount;
