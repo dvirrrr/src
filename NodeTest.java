@@ -1,10 +1,13 @@
 public class NodeTest {
     public static void main(String[] args) {
 
-        Node <Integer> n = new Node<>(2);
+        Node <Integer> n = new Node<>(4);
         Node <Integer> n1 = new Node<>(3, n);
-        Node <Integer> n2 = new Node<>(6, n1);
-        Node <Integer> n3 = new Node<>(7, n2);
+        Node <Integer> n2 = new Node<>(2, n1);
+        Node <Integer> n3 = new Node<>(1, n2);
+        sod(n3);
+        PrintListValuesR(n3);
+        /*
         Node <Integer> n4 = new Node<>(-99, n3);
         Node <Integer> n5 = new Node<>(7, n4);
         Node <Integer> n6 = new Node<>(8, n5);
@@ -15,8 +18,7 @@ public class NodeTest {
         Node <Integer> n11 = new Node<>(2, n10);
         Node <Integer> n12 = new Node<>(1, n11);
         System.out.println(SidraAmir(n12));
-
-
+        */
     }
 
     public static void PrintListValues(Node<Integer> lst) {
@@ -102,31 +104,13 @@ public class NodeTest {
         return rv;
     }
 
-    public static int Sidra(Node <Integer> lst) {
-        int count = 1;
-        int rvCount = 0;
-        while (lst.getValue() != null) {
-            boolean check = lst.getValue() > lst.getNext().getValue();
-            boolean oppCheck = lst.getValue() < lst.getNext().getValue();
-            if (check) {
-                check = lst.getValue() > lst.getNext().getValue();
-                while (check) {
-                    count++;
-                    check = lst.getValue() > lst.getNext().getValue();
-                }
-            }
-            if (oppCheck) {
-                oppCheck = lst.getValue() > lst.getNext().getValue();
-                while (oppCheck) {
-                    count++;
-                    oppCheck = lst.getValue() > lst.getNext().getValue();
-                }
-            }
-            if (count >= 3) {
-                rvCount++;
-            }
-            count = 1;
+    public static void sod(Node <Integer> n) {
+        if (n== null || !n.hasNext()) {
+            return;
         }
-        return rvCount;
+        Node <Integer> p = n.getNext();
+        n.setNext(p.getNext());
+        p.setNext(null);
+        sod(n.getNext());
     }
 }
