@@ -5,20 +5,20 @@ public class NodeTest {
         Node <Integer> n1 = new Node<>(3, n);
         Node <Integer> n2 = new Node<>(2, n1);
         Node <Integer> n3 = new Node<>(1, n2);
-        sod(n3);
-        PrintListValuesR(n3);
-        /*
-        Node <Integer> n4 = new Node<>(-99, n3);
+        Node <Integer> n4 = new Node<>(9, n3);
         Node <Integer> n5 = new Node<>(7, n4);
         Node <Integer> n6 = new Node<>(8, n5);
         Node <Integer> n7 = new Node<>(9, n6);
         Node <Integer> n8 = new Node<>(10, n7);
-        Node <Integer> n9 = new Node<>(-99, n8);
+        Node <Integer> n9 = new Node<>(7, n8);
         Node <Integer> n10 = new Node<>(5, n9);
         Node <Integer> n11 = new Node<>(2, n10);
         Node <Integer> n12 = new Node<>(1, n11);
-        System.out.println(SidraAmir(n12));
-        */
+        System.out.println(zeroes(100));
+        System.out.println(zeroes(0));
+        System.out.println(zeroes(-100));
+        System.out.println(zeroes(1));
+
     }
 
     public static void PrintListValues(Node<Integer> lst) {
@@ -113,4 +113,56 @@ public class NodeTest {
         p.setNext(null);
         sod(n.getNext());
     }
-}
+    public static Node<Integer> addFirstNode(int x, Node<Integer> lst) {
+        Node<Integer> newNode = new Node<Integer> (x);
+        newNode.setNext(lst);
+        lst = newNode;
+        return newNode;
+    }
+    public static double avgList(Node<Integer> lst) {
+        double total=0;
+        double counter=0;
+        while (lst != null) {
+            total += lst.getValue();
+            counter++;
+            lst = lst.getNext();
+        }
+        double avg = total / counter;
+        return avg;
+
+    }
+    public static Node<Integer> shigra (Node <Integer> lst) {
+        double avg = avgList(lst);
+        while (lst.getValue() > avg) {
+            lst = lst.getNext();
+        }
+        Node<Integer> n = new Node<Integer>(lst.getValue());
+        while (lst != null) {
+            if (lst.getValue() < avg) {
+                n = addFirstNode(lst.getValue(), n);
+            }
+        }
+        return n;
+    }
+    public static int zeroes(int num) {
+        if (num == 0) {
+            return 1;
+        }
+        else if(num < 0){
+            return zeroes(-num);
+        }
+        else if (num< 10)
+        {
+            return 0;
+        }
+            else {
+                if (num % 10 == 0) {
+                    return zeroes(num / 10) + 1;
+                }
+                else {
+                    return zeroes(num / 10);
+                }
+            }
+        }
+    }
+
